@@ -1,0 +1,39 @@
+<html>
+<body>
+    <h1>TANHS2 Counter</h1>
+
+    <div id="number">100</div>
+    <button id="plusButton" type="button"
+        onClick="plusButtonFunction()"
+        >
+        +
+    </button>
+
+    <button id="minusButton" type="button"
+        onClick="minusButtonFunction()"
+        >
+        -
+    </button>
+
+    <script>
+        var number = 1;
+        document.getElementById("number").innerText =  number;
+       
+
+        function plusButtonFunction() {
+            number = number + 1;
+            document.getElementById("number").innerText =  number;
+        }
+
+
+        function minusButtonFunction() {
+            if(number >0){
+                number = number - 1;
+                document.getElementById("number").innerText =  number;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

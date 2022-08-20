@@ -1,39 +1,63 @@
+<!DOCTYPE html>
 <html>
 <body>
-    <h1>TANHS2 Counter</h1>
+<h1>Listen Time counting and ring bell</h1>
 
-    <div id="number">100</div>
-    <button id="plusButton" type="button"
-        onClick="plusButtonFunction()"
-        >
-        +
-    </button>
+<p>Listen Time in seconds</p>
+<input type="number" id="listenTime" name="listenTime" value=""></input><br>
+<input type="nubmer" id="times" name="times" value="13"/>
+<button onClick="startTracking()">Start Tracking</button>
+<button onClick="clearTracking()">Clear Tracking</button>
+<hr/>
+<div >
+    
+    Listen count: <span id="listenCount">0</span>
+    <p id="message"></p>
+</div>
+<script>
+var listenCount = 0;
+var intervalObj = null;
+var intervalTime = 0;
 
-    <button id="minusButton" type="button"
-        onClick="minusButtonFunction()"
-        >
-        -
-    </button>
+function play() {
+    //D:\git_tauqeer\jigs\counter\Alarm Bell.mp3
+  var audio = new Audio('./AlarmBell.mp3');
+  audio.play();
+}
 
-    <script>
-        var number = 1;
-        document.getElementById("number").innerText =  number;
-       
+function oneListenTimeHanlder(){
+    console.log("oneListen time handler");
+    listenCount ++;
 
-        function plusButtonFunction() {
-            number = number + 1;
-            document.getElementById("number").innerText =  number;
-        }
+    console.log("changeing listencount to listenCount", listenCount);
+    document.getElementById("listenCount").innerText = listenCount;
+    //play sound
+    play();
 
+     //set mesage
+     document.getElementById("message").innerHTML += listenCount + " oneListenTimeHanlder <br/>";
 
-        function minusButtonFunction() {
-            if(number >0){
-                number = number - 1;
-                document.getElementById("number").innerText =  number;
-            }
-        }
+}
 
-    </script>
+function startTracking(){
+    // intervalTime in millisconds
+    console.log("start tracking");
+    intervalTime = parseFloat(document.getElementById("listenTime").value)* 1000;
+    console.log("intervalTimeInMillisecones ", intervalTime);
+    intervalObj = setInterval(oneListenTimeHanlder, intervalTime);
+
+    //set mesage
+    document.getElementById("message").innerHTML += "started tracking<br/>";
+}
+
+function clearTracking(){
+    console.log("inside clearTracking")
+    clearInterval(intervalObj);
+
+     //set mesage
+     document.getElementById("message").innerHTML += "clear tracking<br/>";
+}
+</script>
+
 </body>
-
 </html>
