@@ -6,6 +6,10 @@
 <p>Listen Time in seconds</p>
 <input type="number" id="listenTime" name="listenTime" value=""></input><br>
 <input type="nubmer" id="times" name="times" value="13"/>
+
+<input type="checkbox" id="playsound" name="playsound" value="1">
+<label for="vehicle1">Play Sound on each iteration</label><br>
+
 <button onClick="startTracking()">Start Tracking</button>
 <button onClick="clearTracking()">Clear Tracking</button>
 <hr/>
@@ -21,8 +25,15 @@ var intervalTime = 0;
 
 function play() {
     //D:\git_tauqeer\jigs\counter\Alarm Bell.mp3
-  var audio = new Audio('./AlarmBell.mp3');
-  audio.play();
+
+    var canPlaySound = document.getElementById('playsound').checked;
+    if(canPlaySound){
+        console.log("playing sound");
+        var audio = new Audio('./AlarmBell.mp3');
+        audio.play();
+    }else{
+        console.log("not playing sound");
+    }
 }
 
 function oneListenTimeHanlder(){
